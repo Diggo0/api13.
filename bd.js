@@ -1,7 +1,6 @@
 import pkg from "pg";
-export { selectUsuarios, selectUsuario, insertUsuario, deleteUsuario, updateUsuario };
+
 const { Pool } = pkg;
-app.use(express.json());
 
 async function connect() {
   const pool = new Pool({
@@ -16,16 +15,6 @@ async function selectUsuarios() {
 	  client.release();
   return res.rows;
 }
-
-async function selectUsuario(id) {
-    const client = await connect();
-    const query = "SELECT * FROM usuario WHERE id = $1";
-    const usuario = [id];
-    const res = await client.query(query, usuario);
-    client.release();
-    return res.rows;
-  }
-
 
 async function selectUsuario(id) {
   const client = await connect();
@@ -56,3 +45,4 @@ async function updateUsuario(id, data) {
   await client.query(query, usuario);
   client.release();
 }
+export { selectUsuarios, selectUsuario, insertUsuario, deleteUsuario, updateUsuario };
