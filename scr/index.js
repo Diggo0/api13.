@@ -1,10 +1,10 @@
 import dotenv from "dotenv";
 import express from "express";
-import { selectUsuarios, selectUsuario, insertUsuario, deleteUsuario, updateUsuario, } from "./bd.js";
+import { selectUsuarios, selectUsuario, insertUsuario, deleteUsuario, updateUsuario, } from "./db/index.js";
 
 const app = express(); 
 const port = 3000; 
-//index.js
+
 app.use(express.json());
 dotenv.config();
 
