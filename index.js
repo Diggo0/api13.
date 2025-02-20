@@ -4,7 +4,8 @@ import { selectUsuarios, selectUsuario, insertUsuario, deleteUsuario, updateUsua
 
 const app = express(); 
 const port = 3000; 
-
+//index.js
+app.use(express.json());
 dotenv.config();
 
 app.get("/", (req, res) => {
