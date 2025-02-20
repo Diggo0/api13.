@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import express from "express";
-o.jimport roteadorUsuario from "./routes/usuaris";
+import roteadorUsuario from "./routes/usuaris";
 
 dotenv.config();
 
