@@ -24,6 +24,7 @@ async function selectUsuario(id) {
   client.release();
   return res.rows;
 }
+
 async function insertUsuario(data) {
   const client = await connect();
   const query = "INSERT INTO usuario (nome,senha,email) VALUES ($1,$2,$3) ";
@@ -31,7 +32,7 @@ async function insertUsuario(data) {
   await client.query(query, usuario);
   client.release();
 }
-//bd.js
+
 async function deleteUsuario(id) {
   const client = await connect();
   const query = "DELETE FROM usuario WHERE id = $1";
