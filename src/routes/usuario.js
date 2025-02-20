@@ -1,17 +1,17 @@
 import { Router } from "express";
-import { selectUsuarios, selectUsuario, insertUsuario, deleteUsuario, updateUsuario, } from "./db/index.js"; 
+import { selectUsuarios, selectUsuario, insertUsuario, deleteUsuario, updateUsuario, } from "../db/index.js"; 
 
-app.use(express.json());
-dotenv.config();
 
-app.get("/", (req, res) => {
+const router = Router();
+
+router.get("/", (req, res) => {
   console.log("Rota / solicitada");
   res.json({
     nome: "Gabriel Santos", 
   });
 });
 
-app.get("/usuario", async (req, res) => {
+router.get("/usuario", async (req, res) => {
   try {
     const usuarios = await selectUsuarios();
     res.json(usuarios);
@@ -23,7 +23,7 @@ app.get("/usuario", async (req, res) => {
 });
 
 
-app.get("/usuario/:id", async (req, res) => {
+router.get("/usuario/:id", async (req, res) => {
   console.log("Rota GET /usuario/# solicitada");
   try {
     const usuario = await selectUsuario(req.params.id);
@@ -34,7 +34,7 @@ app.get("/usuario/:id", async (req, res) => {
   }
 });
 
-app.post("/usuario", async (req, res) => {
+router.post("/usuario", async (req, res) => {
   console.log("Rota POST /usuario solicitada");
   try {
     await insertUsuario(req.body);
@@ -44,7 +44,7 @@ app.post("/usuario", async (req, res) => {
   }
 });
 
-app.delete("/usuario/:id", async (req, res) => {
+router.delete("/usuario/:id", async (req, res) => {
   console.log("Rota DELETE /usuario/# solicitada");
   try {
     const usuario = await selectUsuario(req.params.id);
@@ -57,7 +57,7 @@ app.delete("/usuario/:id", async (req, res) => {
   }
 });
 
-app.put("/usuario/:id", async (req, res) => {
+router.put("/usuario/:id", async (req, res) => {
   console.log("Rota PUT /usuario/# solicitada");
   try {
     const id = req.params.id;
@@ -72,19 +72,5 @@ app.put("/usuario/:id", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Serviço escutando na porta:  ${port}`);
-});
 
-const router = Router();
-
-router.get("/usuario", async (req, res) => {
-  console.log(`Rota GET /usuarios solicitada pelo usuario ${req.userId}`);
-  try {
-    const usuarios = await selectUsuarios();
-    res.json(usuarios);
-  } catch (error) {
-    res.status(error.status || 500).json({ message: error.message || "Erro!" });
-  }
-});
 export default router;
