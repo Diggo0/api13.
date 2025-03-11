@@ -9,5 +9,4 @@ function verificarAutenticacao(req, res, next) {
   });
 }
 
-
 export default verificarAutenticacao;
