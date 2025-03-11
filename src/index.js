@@ -4,7 +4,6 @@ import roteadorUsuario from "./routes/usuario.js";
 import roteadorLogin from "./routes/login.js";
 import cors from "cors";
 
-
 dotenv.config();
 
 const app = express();
@@ -25,6 +24,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  
   console.log(`Serviço escutando na porta:  ${port}`);
 });
